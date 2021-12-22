@@ -1,8 +1,8 @@
 FROM node:14
 
-WORKDIR /server
+WORKDIR /dist
 
-COPY . /server
+COPY . /dist
 RUN npm install
 
 EXPOSE 3000
