@@ -3,7 +3,13 @@ import { LARK_EVENTS, requestLark } from "./lark";
 import store from "./store";
 
 function larkSchedule() {
-  const job = schedule.scheduleJob("0 9 * * *", async () => {
+  let rule = new schedule.RecurrenceRule();
+  rule.hour = 9;
+  rule.minute = 0;
+  rule.second = 0;
+  rule.tz = "Asia/Shanghai";
+
+  const job = schedule.scheduleJob(rule, async () => {
     const projectData = store.getCurrentProjectData();
     if (projectData.length > 0) {
       const result = await requestLark(
